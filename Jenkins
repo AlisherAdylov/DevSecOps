@@ -1,1 +1,75 @@
+pipeline {
+    agent any
 
+    parameters {
+        string(name: 'REPO_NAME', defaultValue: 'my-webapp', description: 'Name of the repository')
+        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Name of the branch to build')
+    }
+
+    stages {
+        stage('Checkout SCM') {
+            steps {
+                checkout([$class: 'GitSCM',
+                          branches: [[name: params.BRANCH_NAME]],
+                          userRemoteConfigs: [[url: "https://github.com/<your-username>/${params.REPO_NAME}.git"]]])
+            }
+        }
+
+        stage('SAST Scan (Semgrep)') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'semgrep-credentials', passwordVariable: 'SEM_PASSWORD', usernameVariable: 'SEM_USERNAME')]) {
+                    sh 'semgrep -o report.json -c semgrep_rules .'
+                }
+            }
+        }
+
+        stage('SCA Scan (Dependency Check)') {
+            steps {
+                sh 'dependency-check --scan . --out . --format HTML'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                script {
+                    docker.build("my-webapp:${env.BUILD_ID}")
+                }
+            }
+        }
+
+        stage('Container Scanning (Trivy)') {
+            steps {
+                sh 'trivy image my-webapp:${env.BUILD_ID} --exit-code 0 --format json | tee trivy-report.json'
+            }
+        }
+
+        stage('Publishing') {
+            steps {
+                script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+
+        stage('Deployment') {
+            steps {
+                sh 'docker-compose up -d'
+            }
+        }
+
+        stage('DAST Scanning (OWASP ZAP)') {
+            steps {
+                sh 'zap-baseline.py -t http://localhost:8080 -r zap-report.html'
+            }
+        }
+    }
+
+    post {
+        always {
+            archiveArtifacts artifacts: '**/*.html, **/*.json', allowEmptyArchive: true
+            stash includes: '**/*.html, **/*.json', name: 'reports'
+        }
+    }
+}
