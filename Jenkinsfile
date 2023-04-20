@@ -22,7 +22,7 @@ pipeline {
     
     stage('Build') {
       steps {
-        sh "echo '1461' | sudo -S usermod -aG docker jenkins"
+        sh "echo 'Piramida733' | sudo -S usermod -aG docker jenkins"
         sh 'sudo usermod -aG docker $USER'
         sh 'docker build -t myimage .'
       }
