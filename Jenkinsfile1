@@ -7,3 +7,5 @@ pipeline {
                 echo "Hello World"
             }
         }
+    }
+}
