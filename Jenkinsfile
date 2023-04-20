@@ -9,9 +9,7 @@ pipeline {
     
     stage('SAST Scan (Semgrep)') {
       steps {
-          sh 'git add .'
-          sh 'git commit -m "Added security scanner reports"'
-          sh 'git push'
+          echo "SEMGREP НЕ ДОБАВЛЯЕТСЯ, ПОКА ЧТО ПРОПУСКАЕМ"
       }
     }
     
