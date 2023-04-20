@@ -15,7 +15,7 @@ pipeline {
     
     stage('SCA Scan (Dependency Check)') {
       steps {
-        sh 'dependency-check.sh --data /home/roflandevops/data --scan . --format HTML --project "My Project" -o dependency-check-report.html'
+        sh 'dependency-check.sh --data /home/roflandevops/data --scan . --format HTML --project "My Project" -o dependency-check-report.html --log /home/roflandevops/data/logfile.log'
         archiveArtifacts artifacts: 'dependency-check-report.html', onlyIfSuccessful: true
       }
     }
