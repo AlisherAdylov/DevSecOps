@@ -7,8 +7,8 @@ ENV email admin@admin.ru
 WORKDIR /code
 
 RUN mkdir db
-COPY ./src/requirements.txt /code
-RUN pip install -r requirements.txt
+COPY ./src /code/src
+RUN pip install -r /code/src/requirements.txt
 
 COPY . /code
 
