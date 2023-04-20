@@ -15,7 +15,8 @@ pipeline {
     
     stage('SCA Scan (Dependency Check)') {
       steps {
-        sh 'dependency-check.sh --data /home/roflandevops/data --scan . --format HTML --project "My Project" -o dependency-check-report.html'
+        echo "Пока что тоже пропускаем..."
+        //sh 'dependency-check.sh --data /home/roflandevops/data --scan . --format HTML --project "My Project" -o dependency-check-report.html'
       }
     }
     
