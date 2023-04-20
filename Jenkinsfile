@@ -57,6 +57,6 @@ pipeline {
         sh 'zap-baseline.py -t http://localhost:8080 -g report.html'
         archiveArtifacts 'report.html'
       }
-    }
+    } **/
   }
-} **/
+} 
