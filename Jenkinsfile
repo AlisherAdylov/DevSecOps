@@ -1,6 +1,6 @@
 pipeline {
   agent any
-  
+  env.PATH = ".semgrep/:${env.PATH}"
   stages {
     stage('Checkout SCM') {
       steps {
