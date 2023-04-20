@@ -9,26 +9,28 @@ pipeline {
     
     stage('SAST Scan (Semgrep)') {
       steps {
-          echo "SEMGREP НЕ ДОБАВЛЯЕТСЯ, ПОКА ЧТО ПРОПУСКАЕМ"
+          echo "Semgrep не выполняет свою работу. Jenkins не может его найти, но он есть и работает я проверял"
+          //sh 'semgrep -o reports/semgrep-report.json src/'
       }
     }
     
     stage('SCA Scan (Dependency Check)') {
       steps {
-        echo "Пока что тоже пропускаем..."
+        echo "Очень долго проверяет, остановил процесс"
         //sh 'dependency-check.sh --data /home/roflandevops/data --scan . --format HTML --project "My Project" -o dependency-check-report.html'
       }
     }
     
     stage('Build') {
       steps {
-        sh "echo 'Piramida733' | sudo -S usermod -aG docker jenkins"
-        sh 'sudo usermod -aG docker $USER'
-        sh 'docker build -t myimage .'
+        echo "Требует права суперпользователя и пароль, но я не буду давать, небезопасно"
+        //sh 'docker build -t myimage .'
       }
     }
     
-    stage('Container Scanning (Trivy)') {
+//Остальные этапы не имеют смысла
+
+   /** stage('Container Scanning (Trivy)') {
       steps {
         sh 'trivy myimage'
         archiveArtifacts 'trivy-results.json'
@@ -46,7 +48,7 @@ pipeline {
     
     stage('Deployment') {
       steps {
-        sh 'docker run -d -p 8080:80 myimage'
+        sh 'docker run -d -p 8081:80 myimage'
       }
     }
     
@@ -57,4 +59,4 @@ pipeline {
       }
     }
   }
-}
+} **/
