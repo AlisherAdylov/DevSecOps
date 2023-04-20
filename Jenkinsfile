@@ -10,8 +10,11 @@ pipeline {
     
     stage('SAST Scan (Semgrep)') {
       steps {
-        sh 'semgrep -o report.json .'
-        archiveArtifacts 'report.json'
+        sh 'semgrep -o reports/semgrep-report.json src/'
+        archiveArtifacts artifacts: 'reports/**', allowEmptyArchive: true
+        git add .
+        git commit -m "Added security scanner reports"
+        git push
       }
     }
     
