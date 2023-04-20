@@ -16,7 +16,7 @@ pipeline {
     stage('SCA Scan (Dependency Check)') {
       steps {
         sh 'dependency-check.sh'
-        archiveArtifacts 'dependency-check-report.html'
+        
       }
     }
     
