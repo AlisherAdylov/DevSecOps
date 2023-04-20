@@ -14,9 +14,9 @@ pipeline {
         archiveArtifacts artifacts: 'reports/**', allowEmptyArchive: true
         steps {
           sh 'git add .'
-        }
-        git commit -m "Added security scanner reports"
-        git push
+          git commit -m "Added security scanner reports"
+          git push
+        }  
       }
     }
     
