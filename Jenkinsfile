@@ -22,6 +22,7 @@ pipeline {
     
     stage('Build') {
       steps {
+        sh 'sudo usermod -aG docker $USER'
         sh 'docker build -t myimage .'
       }
     }
