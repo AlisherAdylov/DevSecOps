@@ -12,7 +12,9 @@ pipeline {
       steps {
         sh 'semgrep -o reports/semgrep-report.json src/'
         archiveArtifacts artifacts: 'reports/**', allowEmptyArchive: true
-        git add .
+        steps {
+          sh 'git add .'
+        }
         git commit -m "Added security scanner reports"
         git push
       }
