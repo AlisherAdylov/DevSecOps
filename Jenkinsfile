@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  environment {
-  PATH = "/home/roflandevops/.local/bin:$PATH"
-  }
   stages {
     stage('Checkout SCM') {
       steps {
