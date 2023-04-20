@@ -1,8 +1,6 @@
 pipeline {
   agent any
-   environment {
-        PATH = "/home/roflandevops/.semgrep:${env.PATH}"
-    }
+  
   stages {
     stage('Checkout SCM') {
       steps {
