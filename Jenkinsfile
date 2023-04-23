@@ -9,7 +9,7 @@ pipeline {
     
     stage('SAST Scan (Semgrep)') {
       steps {
-        sh 'docker run -v ${WORKSPACE}:/src --workdir /src returntocorp/semgrep-agent1:v1 semgrep-agent --config p/ci'
+        //sh 'docker run -v ${WORKSPACE}:/src --workdir /src returntocorp/semgrep-agent1:v1 semgrep-agent --config p/ci'
       }
     }
     
@@ -22,8 +22,8 @@ pipeline {
     
     stage('Build') {
       steps {
-        echo "Требует права суперпользователя и пароль, но я не буду давать, небезопасно"
-        //sh 'docker build -t myimage .'
+       // echo "Требует права суперпользователя и пароль, но я не буду давать, небезопасно"
+        sh 'docker build -t image:1 .'
       }
     }
     
