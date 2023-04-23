@@ -28,6 +28,12 @@ pipeline {
       }
     }
     
+    stage('Deployment') {
+      steps {
+        sh 'docker run -d -p 8081:8080 image:1'
+      }
+    }
+    
 //Остальные этапы не имеют смысла
 
    /** stage('Container Scanning (Trivy)') {
@@ -46,11 +52,6 @@ pipeline {
       }
     }
     
-    stage('Deployment') {
-      steps {
-        sh 'docker run -d -p 8081:80 myimage'
-      }
-    }
     
     stage('DAST Scanning (OWASP ZAP)') {
       steps {
