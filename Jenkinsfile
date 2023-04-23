@@ -27,6 +27,12 @@ pipeline {
       }
     }
     
+    stage('Container Scanning (Trivy)') {
+      steps {
+        sh 'trivy image:1 > scanning.txt'
+      }
+    }
+    
     stage('Deployment') {
       steps {
         sh 'docker run -d -p 8888:8000 image:1'
