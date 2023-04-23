@@ -31,6 +31,7 @@ pipeline {
     stage('Deployment') {
       steps {
         sh 'docker run -d -p 8081:8080 image:1'
+        sh 'docker push image:1'
       }
     }
     
