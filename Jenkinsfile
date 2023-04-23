@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Checkout SCM') {
       steps {
-        git 'https://github.com/AlisherAdylov/DevSecOps.git'
+        git branch: 'master', changelog: false, poll: false, url: 'https://github.com/AlisherAdylov/DevSecOps.git'
       }
     }
     
