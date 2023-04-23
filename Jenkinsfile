@@ -9,8 +9,7 @@ pipeline {
     
     stage('SAST Scan (Semgrep)') {
       steps {
-          echo "Semgrep не выполняет свою работу. Jenkins не может его найти, но он есть и работает я проверял"
-          //sh 'semgrep -o reports/semgrep-report.json src/'
+        sh 'docker run -v ${WORKSPACE}:/src --workdir /src returntocorp/semgrep-agent1:v1 semgrep-agent --config p/ci'
       }
     }
     
