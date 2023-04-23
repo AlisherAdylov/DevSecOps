@@ -16,8 +16,7 @@ pipeline {
     
     stage('SCA Scan (Dependency Check)') {
       steps {
-        echo "Очень долго проверяет, остановил процесс"
-        //sh 'dependency-check.sh --data /home/roflandevops/data --scan . --format HTML --project "My Project" -o dependency-check-report.html'
+        dependencyCheck additionalArguments: '--formal HTML', odcInstallation: 'DP-Check'
       }
     }
     
