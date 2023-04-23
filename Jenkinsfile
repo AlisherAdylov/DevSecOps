@@ -9,6 +9,7 @@ pipeline {
     
     stage('SAST Scan (Semgrep)') {
       steps {
+        echo "ХАЙ"
         //sh 'docker run -v ${WORKSPACE}:/src --workdir /src returntocorp/semgrep-agent1:v1 semgrep-agent --config p/ci'
       }
     }
