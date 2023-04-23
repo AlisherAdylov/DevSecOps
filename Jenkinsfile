@@ -16,7 +16,7 @@ pipeline {
     
     stage('SCA Scan (Dependency Check)') {
       steps {
-        dependencyCheck additionalArguments: '--formal HTML', odcInstallation: 'DP-Check'
+        dependencyCheck additionalArguments: '--format HTML', odcInstallation: 'DP-Check'
       }
     }
     
