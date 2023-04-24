@@ -58,6 +58,9 @@
 
 Переходим в *Dashvoard > Manage Jenkins > Credentials > System > Global Credentials* и добавляем учетные данные для **DockerHub**, предварительно зарегистрировавшись на *https://hub.docker.com/*
 
+Также необходимо выдать права для **Jenkins**, чтобы он мог работать с docker и перезагрузить **Jenkins**, чтобы изменения вступили в силу.
+- `sudo usermod -aG docker jenkins`
+- `sudo systemctl restart jenkins`
 
 ### 4. Создание Jenkins Pipeline
 
