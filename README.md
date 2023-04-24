@@ -62,7 +62,11 @@
 - `sudo usermod -aG docker jenkins`
 - `sudo systemctl restart jenkins`
 
-### 4. Создание Jenkins Pipeline
+### 4. Настройка Dependency Check
+
+Переходим в *Dashboard > Manage Jenkins > Global Tool Configuration* листаем в самый низ и выбираем вкладку **Dependency Check**, Жмем кнопку **Add Dependency-Check**, даем имя **Dependency-Check**, ставим галочку на **Install automaticly**, выбираем последнюю версию и сохраняем изменения
+
+### 5. Создание Jenkins Pipeline
 
 - В меню слева выбираем **+ New Item**, придумываем имя для пайплайна, выбираем **Pipeline** и жмем **OK**.
 - Листаем вниз, до раздела **Pipeline** и в **Definition** выбираем **Pipeline script from SCM**
