@@ -23,7 +23,7 @@ pipeline {
     stage('Build') {
       steps {
        // echo "Требует права суперпользователя и пароль, но я не буду давать, небезопасно"
-        sh 'docker build -t image .'
+        sh 'docker build -t alisheradylov/jenkins-images:latest .'
       }
     }
     
