@@ -1,4 +1,5 @@
 # DevSecOps
+## Установка необходимых утилит на хостовую машину
 
 ## Установка Jenkinks
 
@@ -17,7 +18,7 @@
 
 Источник: *https://www.jenkins.io/doc/book/installing/linux/*
 
-### Настройка Jenkins
+### 1. Настройка Jenkins
 
 После установки **Jenkins**, проверяем его статус:
 - `sudo service jenkins status`
@@ -31,6 +32,21 @@
 Копируем полученный пароль и копируем его в поле **Administrator Password**
 
 Далее соглашаемся с установкой плагинов на **Jenkins**, нажав на кнопку **Install suggested plugins**
+
+### 2. Установка необходимых плагинов для Jenkins
+
+Для установки плагинов, нам необходимо перейти в **Available plugins**, по следующему пути *Dashboard > Manage Jenkins > Plugin Manager > Available plugins* и устанавливаем:
+- **OWASP Dependency-Check**
+- **Docker Pipeline**
+
+### 3. Credentials для DockerHub
+
+Переходим в *Dashvoard > Manage Jenkins > Credentials > System > Global Credentials* и добавляем учетные данные для **DockerHub**, предварительно зарегистрировавшись на *https://hub.docker.com/*
+
+
+### 4. Создание Jenkins Pipeline
+
+В меню слева выбираем **+ New Item**, 
 
 Здравствуйте! К сожалению, **я не справился с заданием**. Мне было очень интересно попробовать себя в соверешенно новой обстановке, до этого ни разу не работал с **Jenkins, SAST – Semgrep, SCA – Dependency Check, Container Scanning – Trivy, DAST – OWASP ZAP**, да и в целом с DevOps инструментами я был знаком только в теории, но мне было интересно изучать это. Я обязательно попробую и после дедлайна доделать этот проект и затем перейти ко второму заданию.
 
