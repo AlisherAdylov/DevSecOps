@@ -1,6 +1,21 @@
 # DevSecOps
 ## Установка необходимых утилит на хостовую машину
 
+### 1. Docker
+- `curl -fsSL https://get.docker.com -o get-docker.sh`
+- `sudo sh get-docker.sh`
+
+Источник: *https://docs.docker.com/engine/install/ubuntu/*
+
+### 2. Git
+- `sudo apt install git`
+
+### 3. Trivy
+- `wget https://github.com/aquasecurity/trivy/releases/download/v0.18.3/trivy_0.18.3_Linux-64bit.deb`
+- `sudo dpkg -i trivy_0.18.3_Linux-64bit.deb`
+
+Источник: *https://aquasecurity.github.io/trivy/v0.18.3/installation/*
+
 ## Установка Jenkinks
 
 Для установки **Jenkins** на **Ubuntu** нам понадобится установить на хостовую машину **java**, для этого открываем терминал комбинацией клавиш **Ctrl+Alt+T** и прописываем следующие команды:
