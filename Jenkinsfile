@@ -37,7 +37,7 @@ pipeline {
       steps {
         withDockerRegistry(credentialsId: 'dockerhub-cred', url: 'https://index.docker.io/v1/') {
           sh '''
-             docker push alisheradylov/jenkins-images:image
+             docker push alisheradylov/jenkins-images:latest
           '''
         }
       }
