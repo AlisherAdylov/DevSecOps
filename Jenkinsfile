@@ -33,6 +33,16 @@ pipeline {
       }
     }
     
+    stage('Publishing') {
+      steps {
+        withDockerRegistry(credentialsId: 'dockerhub-cred', url: 'https://index.docker.io/v1/') {
+          sh '''
+             docker push image:1
+          '''
+        }
+      }
+    }
+    
     stage('Deployment') {
       steps {
         sh 'docker run -d -p 8888:8000 image:1'
@@ -41,12 +51,7 @@ pipeline {
     
 //Остальные этапы не имеют смысла
 
-   /** stage('Container Scanning (Trivy)') {
-      steps {
-        sh 'trivy myimage'
-        archiveArtifacts 'trivy-results.json'
-      }
-    }
+   /** 
     
     stage('Publishing') {
       steps {
