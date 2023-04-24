@@ -49,6 +49,12 @@ pipeline {
       }
     }
     
+     stage('DAST Scan (OWASP ZAP)') {
+      steps {
+        sh 'zap-baseline.py -t http://localhost:8888 -r report.html'
+      }
+    }
+    
 //Остальные этапы не имеют смысла
 
    /** 
