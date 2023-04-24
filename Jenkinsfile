@@ -23,13 +23,13 @@ pipeline {
     stage('Build') {
       steps {
        // echo "Требует права суперпользователя и пароль, но я не буду давать, небезопасно"
-        sh 'docker build -t image:1 .'
+        sh 'docker build -t image .'
       }
     }
     
     stage('Container Scanning (Trivy)') {
       steps {
-        sh 'trivy image:1 > scanning.txt'
+        sh 'trivy image > scanning.txt'
       }
     }
     
@@ -37,7 +37,7 @@ pipeline {
       steps {
         withDockerRegistry(credentialsId: 'dockerhub-cred', url: 'https://index.docker.io/v1/') {
           sh '''
-             docker push alisheradylov/jenkins-images:1
+             docker push alisheradylov/jenkins-images:image
           '''
         }
       }
@@ -45,7 +45,7 @@ pipeline {
     
     stage('Deployment') {
       steps {
-        sh 'docker run -d -p 8888:8000 image:1'
+        sh 'docker run -d -p 8888:8000 image'
       }
     }
     
